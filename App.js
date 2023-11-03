@@ -12,6 +12,8 @@ import OtherScreen from './components/OtherScreen';
 import ReferAndEarnScreen from './components/ReferAndEarnScreen';
 import ProfileScreen from './components/ProfileScreen'
 import NewProfileSection from './components/NewProfileSection';
+import BlogScreen from './components/BlogScreen';
+import BlogDetail from './components/BlogDetail';
 
 const Stack = createStackNavigator();
 
@@ -79,6 +81,21 @@ export default function App() {
           // }}
 
         />
+          <Stack.Screen
+          name="BlogScreen"
+          component={BlogScreen}
+          options={{
+          title: 'Read Blog and Earn Money',}}
+
+         />
+         <Stack.Screen
+          name="BlogDetail"
+          component={BlogDetail}
+          options={{
+          title: 'Blog Post',}}
+
+         />
+      
       </Stack.Navigator>
     </NavigationContainer>
   );

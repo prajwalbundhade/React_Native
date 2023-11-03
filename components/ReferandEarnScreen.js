@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet,Image, TouchableOpacity } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Clipboard } from 'react-native';
-
+import { MaterialIcons } from '@expo/vector-icons'; 
+import { Entypo } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const ReferAndEarnScreen = () => {
+  const navigation = useNavigation();
   const [selectedSection, setSelectedSection] = useState('invite');
 
   return (
@@ -25,10 +28,47 @@ const ReferAndEarnScreen = () => {
             <Text style={styles.btnText}>My Invites</Text>
           </TouchableOpacity>
         </View>
+
+        
       </View>
+      <View style={styles.navigationContainer}>
+              <View style={styles.navigationButton}>
+              <TouchableOpacity onPress={() => navigation.navigate('HomeScreen')}>
+                  <View>
+                      <Entypo name="home" size={30} color="white" />
+                  </View>
+              </TouchableOpacity>   
+              </View>
+              <View style={styles.navigationButton}>
+              <TouchableOpacity onPress={() => navigation.navigate('ReferAndEarnScreen')}>
+                  <View>
+                      <MaterialIcons name="attach-money" size={30} color="white" />
+                  </View>
+              </TouchableOpacity>
+              </View>
+              <View style={styles.navigationButton}>
+                  <TouchableOpacity onPress={() => navigation.navigate('WalletScreen')}>
+                      <View>
+                          <MaterialIcons name="redeem" size={30} color="white" />
+                      </View>
+                  </TouchableOpacity>
+              </View>
+              <View style={styles.navigationButton}>
+                 <TouchableOpacity onPress={() => navigation.navigate('ProfileScreen')}>
+                  <View>
+                      <MaterialIcons name="account-circle" size={30} color="white" />
+                  </View>
+                  </TouchableOpacity>
+              </View>
+      </View>
+      
       {selectedSection === 'invite' && <InviteSection />}
       {selectedSection === 'myinvites' && <MyInvitesSection />}
+    
+     
+    
     </View>
+    
   );
 };
 
@@ -86,6 +126,7 @@ const InviteSection = () => {
       <TouchableOpacity onPress={handleInviteFriends} style={styles.invite}>
         <Text style={{ color: '#fff', fontSize: 18 }}>Invite Friends</Text>
       </TouchableOpacity>
+      
     </View>
   );
 };
@@ -101,6 +142,7 @@ const MyInvitesSection = () => {
       <Text style={{ fontSize: 18, color: '#888', marginBottom: 10 }}>No Invites</Text>
     </View>
     </View>
+    
   );
 };
 
@@ -108,6 +150,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor:'white',
+    
   },
   header: {
     paddingTop: 30, // Adjust as needed
@@ -143,10 +186,11 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     alignItems: 'center',
     marginTop: -20,
+    marginHorizontal: 20,
   },
   bannerImage: {
     width: '100%', // Make the image fill the container horizontally
-    height: 200,
+    height: '30%',
      // Set an appropriate height for the image
   },
   textContainer: {
@@ -209,6 +253,28 @@ const styles = StyleSheet.create({
   copyButtonText: {
     color: '#fff',
     marginLeft: 5,
+  },
+  navigationContainer: {
+    position: 'absolute',
+    bottom: 20, // Adjust this value to lift the navigation container higher from the bottom
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
+    paddingVertical: 17,
+    backgroundColor: 'black',
+    zIndex: 1,
+    borderTopLeftRadius: 100, // Adjust this value to create an oval shape
+    borderTopRightRadius: 100, // Adjust this value to create an oval shape
+    borderBottomLeftRadius: 100, // Adjust this value to create an oval shape
+    borderBottomRightRadius: 100, // Adjust this value to create an oval shape
+    alignItems: 'center', // Align items to the center
+    marginLeft: 20, // Adjust this value as needed
+  },
+  navigationButton: {
+  
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center', // Centering the navigation buttons
   },
   invite:{
     backgroundColor: '#9d1afe', 
